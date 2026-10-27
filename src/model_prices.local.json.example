@@ -1,0 +1,12 @@
+{
+  "_comment": "Copy this file to model_prices.local.json to add or correct model pricing. Entries are merged on top of LiteLLM's upstream cost map via register_model(). Keys are litellm model names; costs are USD per token. The _comment key is ignored by LiteLLM.",
+  "azure_ai/my-custom-deployment": {
+    "max_tokens": 200000,
+    "max_input_tokens": 200000,
+    "max_output_tokens": 8192,
+    "input_cost_per_token": 0.000003,
+    "output_cost_per_token": 0.000015,
+    "litellm_provider": "azure_ai",
+    "mode": "chat"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "model_zoo": {
+    "openai_gpt5.6-terra": {
+      "model": "gpt-5.6-terra"
+    },
+    "openai_gpt5.6-sol": {
+      "model": "gpt-5.6-sol"
+    },
+    "openai_gpt-5.4-mini": {
+      "model": "gpt-5.4-mini"
+    },
+    "openai_gpt-5.4-pro": {
+      "model": "gpt-5.4-pro"
+    },
+    "ollama_deepseek-v4.1-flash": {
+      "model": "ollama_chat/deepseek-v4.1-flash:cloud",
+      "base_url": "https://api.ollama.com"
+    },
+    "ollama_kimi-k3": {
+      "model": "ollama_chat/kimi-k3:cloud",
+      "base_url": "https://api.ollama.com"
+    },
+    "ollama_glm53-flash": {
+      "model": "ollama_chat/glm-5.3-flash:cloud",
+      "base_url": "https://api.ollama.com"
+    },
+    "vllm_gemma4": {
+      "model": "hosted_vllm/gemma-4-26b-a4b",
+      "base_url": "http://some_ip_address:8000/v1",
+      "api_key": "",
+      "max_input_tokens": 256000
+    }
+  },
+
+  "shared": {
+    "retry": {
+      "num_retries": 5,
+      "retry_min_wait": 15,
+      "retry_max_wait": 120,
+      "retry_multiplier": 2.0,
+      "main_llm_timeout": 300
+    }
+  },
+
+  "presets": {
+    "openai-review": {
+      "intro": "openai_gpt-5.4-mini",
+      "analysis": "openai_gpt5.6-terra",
+      "subagent_analysis": "openai_gpt-5.4-pro",
+      "evaluation": "openai_gpt5.6-terra",
+      "subagent_evaluation": "openai_gpt5.6-sol",
+      "extraction": "openai_gpt-5.4-mini"
+    },
+    "ollama-review": {
+      "intro": "ollama_deepseek-v4.1-flash",
+      "analysis": "ollama_glm53-flash",
+      "subagent_analysis": "ollama_glm53-flash",
+      "evaluation": "ollama_deepseek-v4.1-flash",
+      "subagent_evaluation": "ollama_deepseek-v4.1-flash",
+      "extraction": "ollama_glm53-flash"
+    },
+    "local-gemma-4-all": {
+      "intro": "vllm_gemma4",
+      "analysis": "vllm_gemma4",
+      "subagent_analysis": "vllm_gemma4",
+      "evaluation": "vllm_gemma4",
+      "subagent_evaluation": "vllm_gemma4",
+      "extraction": "vllm_gemma4"
+    }
+  }
+}

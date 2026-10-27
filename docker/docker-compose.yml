@@ -1,0 +1,24 @@
+services:
+  pipeline:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      args:
+        UID: ${LOCAL_UID:-1000}
+        GID: ${LOCAL_GID:-1000}
+    container_name: pipeline_sandbox
+    env_file:
+      - ./.env
+    environment:
+      LITELLM_MODEL_COST_MAP_URL: ${LITELLM_MODEL_COST_MAP_URL:-https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json}
+      PYTHONDONTWRITEBYTECODE: 1
+    user: "${LOCAL_UID:-1000}:${LOCAL_GID:-1000}"
+    group_add:
+      - "${LOCAL_GID:-1000}"
+    volumes:
+      - ../src:/pipeline
+      - ${SUT_PATH:-../test_project/}:/sut
+    working_dir: /pipeline
+    stdin_open: true
+    tty: true
+    command: sleep infinity

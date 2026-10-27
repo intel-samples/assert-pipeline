@@ -1,0 +1,6 @@
+docker/.env
+src/.agent_conversations*
+src/.pipeline_outputs
+src/model_prices.local.json
+src/*.log
+*.pyc
